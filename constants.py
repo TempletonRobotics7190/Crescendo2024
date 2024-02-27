@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import rev
 from enum import Enum
+
+import rev
 
 MOTOR_TYPE = rev.CANSparkLowLevel.MotorType.kBrushed
 USE_PNEUMATICS = True
@@ -18,7 +19,7 @@ POV_LEFT = 270
 
 
 class FiringSpeed(Enum):
-    AMP = 0.5
+    AMP = 0.35
     SPEAKER = 0.75
 
     def __neg__(self) -> FiringSpeed:

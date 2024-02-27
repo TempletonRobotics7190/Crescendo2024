@@ -4,6 +4,7 @@ import wpilib
 import wpilib.drive
 import wpimath.geometry
 
+
 class Drive(commands2.Subsystem):
     def __init__(self) -> None:
         super().__init__()
@@ -19,16 +20,24 @@ class Drive(commands2.Subsystem):
             front_right_motor,
         )
     
-    def move(self, x_speed: float, y_speed: float, z_rotation: float, gyro_angle: wpimath.geometry.Rotation2d):
+    def move(self, x_speed: float, y_speed: float, z_rotation: float, gyro_angle: float | None = None):
         """
         X: Forward/Backward
         Y: Left/Right
         Z: Clockwise/Counterclockwise
         Gyro Angle: For Field-Oriented Driving
         """
-        self.robot_drive.driveCartesian(
-            z_rotation,
-            y_speed,
-            -x_speed,
-            gyro_angle,
-        )
+
+        if gyro_angle is not None:
+            self.robot_drive.driveCartesian(
+                z_rotation,
+                y_speed,
+                -x_speed,
+                wpimath.geometry.Rotation2d.fromDegrees(gyro_angle),
+            )
+        else:
+            self.robot_drive.driveCartesian(
+                z_rotation,
+                y_speed,
+                -x_speed,
+            )

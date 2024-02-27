@@ -1,7 +1,9 @@
 import commands2
 import phoenix5
 import wpilib
-from constants import FiringSpeed
+
+from constants import INTAKE_MOTOR_SPEED, FiringSpeed
+
 
 class Shooter(commands2.Subsystem):
     def __init__(self) -> None:
@@ -19,12 +21,21 @@ class Shooter(commands2.Subsystem):
     
     def shoot(self):
         self.firing_motors.set(self.firing_speed.value)
+    
+    def shoot_speed(self, speed: float):
+        self.firing_motors.set(speed)
 
     def suck(self):
-        self.firing_motors.set(-self.firing_speed.value)
+        self.firing_motors.set(INTAKE_MOTOR_SPEED)
+    
+    def stop(self):
+        self.firing_motors.set(0)
     
     def switch(self):
         self.firing_speed = -self.firing_speed
     
     def swivel(self):
         self.solenoid.toggle()
+    
+    def set_firing_speed(self, firing_speed: FiringSpeed):
+        self.firing_speed = firing_speed
