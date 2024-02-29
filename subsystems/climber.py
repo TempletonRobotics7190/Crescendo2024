@@ -9,5 +9,11 @@ class Climber(commands2.Subsystem):
         super().__init__()
         self.motor = rev.CANSparkMax(CAN_ID, MOTOR_TYPE)
     
-    def climb(self):
+    def climb_down(self):
         self.motor.set(CLIMBING_MOTOR_SPEED)
+
+    def climb_up(self):
+        self.motor.set(-CLIMBING_MOTOR_SPEED)
+
+    def stop(self):
+        self.motor.set(0)

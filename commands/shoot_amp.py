@@ -27,9 +27,9 @@ class ShootAmp(commands2.Command):
         self.timer.restart()
     
     def execute(self) -> None:
-        if self.timer.get() > 2:
+        if self.timer.get() > 1:
             self.shooter.shoot_speed(FiringSpeed.AMP.value)
-        if self.timer.get() > 3.5:
+        if self.timer.get() > 2:
             self.servos.up()
     
     def end(self, interrupted: bool) -> None:
@@ -38,4 +38,4 @@ class ShootAmp(commands2.Command):
         self.shooter.stop()
 
     def isFinished(self) -> bool:
-        return self.timer.get() > 5
+        return self.timer.get() > 3
