@@ -13,7 +13,7 @@ class RobotContainer:
         self.servos.down()
         self.shooter = subsystems.Shooter()
         self.left_climber = subsystems.Climber(12)
-        self.right_climber = subsystems.Climber(11)
+        self.right_climber = subsystems.Climber(11, reversed=True)
 
         self.controller = commands2.button.CommandXboxController(0)
 
@@ -41,4 +41,4 @@ class RobotContainer:
     
 
     def getAutonomousCommand(self) -> commands2.Command:
-        return commands2.cmd.none()
+        return commands.Autonomous(self.drive)
