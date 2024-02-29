@@ -4,7 +4,7 @@ import commands2
 from constants import DRIVING_MOTOR_SPEED, SIDEWAYS_MOTOR_SPEED, TURNING_MOTOR_SPEED
 
 
-class ShootAmp(commands2.Command):
+class Autonomous(commands2.Command):
     """
     Shoots the note
 
